@@ -23,6 +23,10 @@ public class PostController {
     public Page<PostDto> findAll(Pageable pageable) {
         return postService.findAll(pageable);
     }
+    @GetMapping("/api/v1/posts/{id}")
+    public PostDto findById(@PathVariable("id") Long id) {
+        return postService.findById(id);
+    }
 
 
     @PostMapping("/api/v1/posts")
