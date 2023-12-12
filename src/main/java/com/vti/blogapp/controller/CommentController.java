@@ -2,6 +2,8 @@ package com.vti.blogapp.controller;
 
 import com.vti.blogapp.dto.CommentDto;
 import com.vti.blogapp.form.CommentCreateForm;
+import com.vti.blogapp.form.CommentUpdateForm;
+import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,4 +23,14 @@ public class CommentController {
                              @PathVariable("postId") Long postId){
         return commentService.create(form, postId);
     }
+    @PutMapping("/api/v1/comments/{id}")
+    public CommentDto update(@RequestBody CommentUpdateForm form,
+                             @PathVariable("id") Long id){
+        return commentService.update(form,id);
+    }
+    @DeleteMapping("/api/v1/comments/{id}")
+    public void  deleteById(@PathVariable("id") Long id){
+        commentService.deleteById(id);
+    }
+
 }
