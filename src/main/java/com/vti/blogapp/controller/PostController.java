@@ -5,11 +5,13 @@ import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostFilterPorm;
 import com.vti.blogapp.form.PostUpdateForm;
 import com.vti.blogapp.service.PostService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Setter
 @RestController
 @AllArgsConstructor
+@Validated
 public class PostController {
     private final PostService postService;
     @GetMapping("/api/v1/posts")
@@ -25,12 +28,13 @@ public class PostController {
     }
     @GetMapping("/api/v1/posts/{id}")
     public PostDto findById(@PathVariable("id") Long id) {
+
         return postService.findById(id);
     }
 
 
     @PostMapping("/api/v1/posts")
-    public PostDto create(@RequestBody PostCreateForm from){
+    public PostDto create(@RequestBody @Valid PostCreateForm from){
 
         return postService.create(from);
     }
