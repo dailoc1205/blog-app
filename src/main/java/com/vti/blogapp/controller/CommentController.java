@@ -2,6 +2,7 @@ package com.vti.blogapp.controller;
 
 import com.vti.blogapp.dto.CommentDto;
 import com.vti.blogapp.form.CommentCreateForm;
+import com.vti.blogapp.form.CommentFilterForm;
 import com.vti.blogapp.form.CommentUpdateForm;
 import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.service.CommentService;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     private final CommentService commentService;
     @GetMapping("/api/v1/comments")
-    public Page<CommentDto> findAll(Pageable pageable){
-        return commentService.findAll(pageable);
+    public Page<CommentDto> findAll(CommentFilterForm form,Pageable pageable){
+
+        return commentService.findAll(form,pageable);
     }
     @GetMapping("/api/v1/posts/{postId}/comments")
     public Page<CommentDto> findByPostId (@PathVariable ("postId") Long postId, Pageable pageable){

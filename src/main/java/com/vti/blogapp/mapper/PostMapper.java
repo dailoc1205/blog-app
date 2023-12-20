@@ -2,11 +2,11 @@ package com.vti.blogapp.mapper;
 
 import com.vti.blogapp.dto.PostDto;
 import com.vti.blogapp.entity.Post;
-import com.vti.blogapp.form.PostCreateFrom;
+import com.vti.blogapp.form.PostCreateForm;
 import com.vti.blogapp.form.PostUpdateForm;
 
 public class PostMapper {
-    public  static Post map(PostCreateFrom from){
+    public  static Post map(PostCreateForm from){
         var post = new Post();
         post.setTitle(from.getTitle());
         post.setDescription(from.getDescription());
