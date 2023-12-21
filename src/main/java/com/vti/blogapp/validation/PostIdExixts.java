@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(PARAMETER)
 @Retention(RUNTIME)
 public @interface PostIdExixts {
-    String message() default "The post does not exixt.";
+    String message() default "{post.id.Exists.message}";
 
     Class<?>[] groups() default {};
 

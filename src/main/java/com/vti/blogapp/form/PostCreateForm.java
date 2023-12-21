@@ -10,8 +10,8 @@ import org.hibernate.validator.constraints.Length;
 
 
 public class PostCreateForm {
-    @NotBlank
-    @Length(max = 50)
+    @NotBlank(message = "{post.title.NotBlank.message}")
+    @Length(max = 50, message = "{post.title.Length.message}")
     private String title;
 
     @NotBlank //khong de trong
