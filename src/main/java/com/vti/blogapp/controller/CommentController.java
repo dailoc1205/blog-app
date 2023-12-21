@@ -6,6 +6,8 @@ import com.vti.blogapp.form.CommentFilterForm;
 import com.vti.blogapp.form.CommentUpdateForm;
 import com.vti.blogapp.mapper.CommentMapper;
 import com.vti.blogapp.service.CommentService;
+import com.vti.blogapp.validation.CommentIdExixts;
+import com.vti.blogapp.validation.PostIdExixts;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,16 +31,16 @@ public class CommentController {
     }
     @PostMapping ("/api/v1/posts/{postId}/comments")
     public CommentDto create(@RequestBody @Valid CommentCreateForm form,
-                             @PathVariable("postId") Long postId){
+                             @PathVariable("postId") @CommentIdExixts Long postId){
         return commentService.create(form, postId);
     }
     @PutMapping("/api/v1/comments/{id}")
     public CommentDto update(@RequestBody @Valid CommentUpdateForm form,
-                             @PathVariable("id") Long id){
+                             @PathVariable("id") @PostIdExixts Long id){
         return commentService.update(form,id);
     }
     @DeleteMapping("/api/v1/comments/{id}")
-    public void  deleteById(@PathVariable("id") Long id){
+    public void  deleteById(@PathVariable("id") @CommentIdExixts Long id){
         commentService.deleteById(id);
     }
     @DeleteMapping("/api/v1/comments/email/{email}")
