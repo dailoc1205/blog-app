@@ -34,7 +34,7 @@ public class PostController {
 
 
     @PostMapping("/api/v1/posts")
-    public PostDto create(@RequestBody @Valid PostCreateForm from){
+    public PostDto create(@RequestBody @Valid  PostCreateForm from){
 
         return postService.create(from);
     }
